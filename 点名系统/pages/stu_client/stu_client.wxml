@@ -1,5 +1,5 @@
 <view class="container">
-  <button class="btn-top">评论 / 质疑</button>
-  <button class="btn-left">2</button>
-  <button class="btn-right">3</button>
+  <button bindtap="gotocomment" class="btn-top">评论 / 质疑</button>
+  <button bindtap="gotoindex3" class="btn-left">目前点到的人</button>
+  <button bindtap="gotorank" class="btn-right">查看排行榜</button>
 </view>
