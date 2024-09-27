@@ -1,53 +1,69 @@
-.container {
-  padding: 20px;
-}
-
 .latest-record {
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-}
-
-text {
+    display: flex;
+    height: 100px;
+    width: 200px;
+    border: 3rpx solid #faca82;
+    border-radius: 10rpx;
+  }
+  .text-ti {
+    position: absolute;
+    font-size: 12px;
+    background: white;
+    margin: -10px 0 0 10px;
+    padding: 0px 5px;
+    color: rgb(144, 147, 167);
+  }
+ .people text {
+  position: relative;
   display: block;
-  margin-bottom: 5px;
-  margin-top: 100rpx;
-}
-.action-button {
-  display: block; /* 使按钮独占一行 */
-  width: 80%; /* 按钮宽度 */
-  margin: 20rpx auto; /* 垂直和水平居中 */
-  padding: 10rpx; /* 按钮内边距 */
-  background-color: #1AAD19; /* 按钮背景颜色 */
-  color: white; /* 按钮文字颜色 */
-  border-radius: 5rpx; /* 按钮边框圆角 */
-}
+  text-align: auto;
+  top: 20px;
+  left: 20px;
+  font-size: 35rpx;
+  font-weight: bold;
+  background: linear-gradient(to right, #d71ae8, #4a8aff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 
-
-
-.input-box {
-  margin-bottom: 10px;
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid rgb(255, 2, 2);
-  border-radius: 30px;
-  box-sizing: border-box;
+.container
+{
+    background-image: url('http://cdnjson.com/images/2024/09/27/sure.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
 }
-
-.comment-list {
-  height: 100%;
-  padding: 10px; /* 保留滚动视图的内边距 */
+.action-button{
+    position: relative;
+    background-color: rgb(118, 224, 32);
+    border: none;
+    font-size: 28px;
+    color: #ffffff;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    transition-duration: 0.6s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
 }
-
-.comment-item {
-  margin-bottom: 5px; /* 减少评论项之间的外边距 */
-  padding: 5px; /* 减少评论项的内边距 */
-  background-color: #f8f8f8;
-  border-radius: 5px;
-  font-size: 12px; /* 减小字体大小 */
+.action-button::after{
+    content: '';
+    background:#53a4f0;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition:all 0.8s;
+}
+.action-button:active::after{
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
 }
