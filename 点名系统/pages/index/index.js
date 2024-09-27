@@ -92,7 +92,7 @@ Page({
       }).then(res => {
         console.log('添加成功', res);
         wx.navigateTo({
-          url: '/pages/index3/index3' // 确保路径正确
+          url: '/pages/stu_client/stu_client' // 确保路径正确
         });
       }).catch(err => {
         console.log('添加失败', err); // 失败提示错误信息
