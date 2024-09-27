@@ -86,7 +86,8 @@ Page({
       user_ol.add({
         data: {
           num: num,
-          name: that.data.name
+          name: that.data.name,
+          count: 0,
         }
       }).then(res => {
         console.log('添加成功', res);
