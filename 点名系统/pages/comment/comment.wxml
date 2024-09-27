@@ -1,0 +1,19 @@
+<view class="all">
+    <button bind:tap="clickBtn" style="height: 50px;width:100px;"class="container">刷新</button>
+    <view class="comment_text">
+            <scroll-view scroll-y="true" class="comment-list">
+            <view class="comment-item" wx:for="{{comments}}" wx:key="unique">
+            <text>姓名：{{item.name}}</text>
+            <text>评论：{{item.content}}</text>
+            </view>
+            </scroll-view>
+    </view>
+    <view class="t-login">  
+        <form class="cl">  
+            <view class="t-a">  
+                <input type="text"placeholder="请发表你的评论" maxlength="11" bindinput="bindCommentInput" />  
+            </view>  
+            <button bindtap="submitComment">评 论</button>  
+        </form>  
+    </view> 
+</view>
