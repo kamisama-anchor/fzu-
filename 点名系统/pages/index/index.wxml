@@ -11,15 +11,14 @@
             </view>
             <view class="t-a">
                 <image src="https://zhoukaiwen.com/img/loginImg/pwd.png"></image> 
-                <input type="password" name="code" maxlength="6" placeholder="请输入姓名" bindinput="bindnameInput" />
+                <input  name="code" maxlength="6" placeholder="请输入姓名" bindinput="bindnameInput" />
             </view>
-            <view class="t-c" bindtap="forgotPwd">忘记信息</view>
             <button bindtap="login">登 录</button>
         </form>
     </view>
     <view class="cardBox">
         <view>
-            注册新账号
+            联系我们：2047481732@qq.com
         </view>
     </view>
     <image class="img-b" src="https://zhoukaiwen.com/img/loginImg/bg2.png"></image> 
