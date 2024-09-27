@@ -9,7 +9,9 @@
             <view class="t-a">  
                 <input type="number"placeholder="请输入分数" maxlength="11" bindinput="inputChange" />  
             </view>  
-            <button bindtap="queryUser">打 分</button>  
+            <button bindtap="queryUser">打 分</button>
+            <button bindtap="decreaseScore">不能复述</button>
+            <button bindtap="addScore">可以复述</button>
         </form>  
     </view>  
 </view>
