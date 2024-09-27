@@ -1,0 +1,34 @@
+.container { 
+    display: flex; 
+    flex-direction: column; /* 使子元素垂直排列 */ 
+    align-items: center; /* 子元素在容器中居中对齐 */ 
+    padding: 20px; /* 容器内边距 */ 
+} 
+ 
+.action-button1{ 
+    margin: 100px 20px; /* 按钮上下外边距 */ 
+    padding: 20px; /* 按钮内边距 */ 
+    background:linear-gradient(#ccfbff, #ef96c5); /* 按钮背景颜色 */ 
+    color: white; /* 按钮文字颜色 */ 
+    border-radius: 5px; /* 按钮边框圆角 */ 
+} 
+.action-button2{ 
+    margin: 100px 20px; /* 按钮上下外边距 */ 
+    padding: 20px; /* 按钮内边距 */ 
+    background: linear-gradient(to right, #ead6ee, #a0f1ea); 
+    color: white; /* 按钮文字颜色 */ 
+    border-radius: 5px; /* 按钮边框圆角 */ 
+}
+.action-button3{ 
+    margin: 100px 20px; /* 按钮上下外边距 */ 
+    padding: 20px; /* 按钮内边距 */ 
+    background: linear-gradient(to bottom right, #eebd89, #d13abd);
+    color: white; /* 按钮文字颜色 */ 
+    border-radius: 5px; /* 按钮边框圆角 */ 
+}
+.login-bg {
+    background-image: url('http://cdnjson.com/images/2024/09/27/index_2.jpg'); 
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+  }

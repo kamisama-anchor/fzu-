@@ -1,0 +1,54 @@
+button {
+    padding: 80px; /* 按钮的厚度 */
+    border-radius: 70%; /* 将按钮变成圆形 */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    outline: none; /* 移除焦点时的轮廓线 */
+  }
+button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+  /* 根据按钮内文字或图标的大小调整padding */
+  .btn-top {
+    background-color: palegoldenrod;
+    width: 10px; /* 按钮的宽度 */
+    height: 10px; /* 按钮的高度 */
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .btn-left {
+    background-color:salmon;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    transform: translateY(-50%);
+  }
+  
+  .btn-right {
+    background-color:lightpink;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    right: 1%;
+    transform: translateY(-50%);
+  }
+.container
+{
+background-image: url(' http://cdnjson.com/images/2024/09/27/index3.jpg');
+height: 100vh;
+background-size: cover;
+background-position: center;
+}
+
+ 

@@ -1,0 +1,32 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/index5/index5",
+        "pages/index4/index4",
+        "pages/index2/index2",
+        "pages/rankk/rankk",
+        "pages/upload_stu/upload_stu",
+        "pages/change/change",
+        "pages/demo1/demo1",
+        "pages/index3/index3",
+        "pages/stu_client/stu_client"
+    ],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "微信接口功能演示"
+    },
+    "style": "v2",
+    "renderer": "skyline",
+    "rendererOptions": {
+        "skyline": {
+            "defaultDisplayBlock": true,
+            "disableABTest": true,
+            "sdkVersionBegin": "3.0.0",
+            "sdkVersionEnd": "15.255.255"
+        }
+    },
+    "componentFramework": "glass-easel",
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,53 @@
+.container {
+  padding: 20px;
+}
+
+.latest-record {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+text {
+  display: block;
+  margin-bottom: 5px;
+  margin-top: 100rpx;
+}
+.action-button {
+  display: block; /* 使按钮独占一行 */
+  width: 80%; /* 按钮宽度 */
+  margin: 20rpx auto; /* 垂直和水平居中 */
+  padding: 10rpx; /* 按钮内边距 */
+  background-color: #1AAD19; /* 按钮背景颜色 */
+  color: white; /* 按钮文字颜色 */
+  border-radius: 5rpx; /* 按钮边框圆角 */
+}
+
+
+
+.input-box {
+  margin-bottom: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgb(255, 2, 2);
+  border-radius: 30px;
+  box-sizing: border-box;
+}
+
+.comment-list {
+  height: 100%;
+  padding: 10px; /* 保留滚动视图的内边距 */
+}
+
+.comment-item {
+  margin-bottom: 5px; /* 减少评论项之间的外边距 */
+  padding: 5px; /* 减少评论项的内边距 */
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  font-size: 12px; /* 减小字体大小 */
+}

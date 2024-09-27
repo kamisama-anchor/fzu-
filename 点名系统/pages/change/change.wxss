@@ -1,0 +1,78 @@
+.data-button
+{
+    padding: 10px;
+    display:block; 
+    background-color:skyblue; /* 按钮背景颜色 */
+    border: none; /* 无边框 */
+    width: 150%; /* 按钮宽度 */
+    text-align: left; /* 文本左对齐 */
+    cursor: default; /* 将鼠标指针设置为默认，因为这是一个显示数据的按钮 */
+}
+.back
+{
+    background-color: skyblue;
+    border: none;
+    border-radius: 12px;
+    color:white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 100px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s;
+}
+.container
+{
+background-image: url('http://cdnjson.com/images/2024/09/26/change.jpg');
+height: 100vh;
+background-size: cover;
+background-position: center;
+}
+.t-login {  
+    width: 600rpx;  
+    padding: 55rpx;  
+    margin: 0 auto;  
+    font-size: 28rpx;  
+    background-color: #ffffff;  
+    border-radius: 20rpx;  
+    position: relative;  
+    margin-top: -100rpx;  
+    box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.15);  
+    z-index: 9;  
+  }  
+  .t-login button {  
+    font-size: 38rpx;  
+    background: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);  
+    color: #fff;  
+    height: 120rpx;  
+    line-height: 90rpx;  
+    border-radius: 50rpx;  
+  }  
+    
+  .t-login input {  
+    padding: 0 20rpx 0 120rpx;  
+    height: 90rpx;  
+    line-height: 90rpx;  
+    margin-bottom: 50rpx;  
+    background: #f6f6f6;  
+    border: 1px solid #f6f6f6;  
+    font-size: 28rpx;  
+    border-radius: 50rpx;  
+  }  
+    
+  .t-login .t-a {  
+    position: relative;  
+  }  
+    
+  .t-login .t-a image {  
+    width: 40rpx;  
+    height: 40rpx;  
+    position: absolute;  
+    left: 40rpx;  
+    top: 28rpx;  
+  }
+
+

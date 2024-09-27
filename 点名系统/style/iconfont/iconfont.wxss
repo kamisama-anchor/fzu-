@@ -1,0 +1,26 @@
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  font-style: normal;
+  width: 10px;    /* 设置按钮宽度 */
+  height: 40px;   /* 设置按钮高度 */
+  padding-left: 150px;/*按钮大小*/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.iconfont {
+    position: relative; /* 相对于其正常位置进行定位 */
+    right: 240px; /* 向左移动图标 */
+    top: 40px; /* 向下移动图标 */
+  }
+.icon-arrdown-copy:before {
+  content: "\e65a";
+}
+@font-face {
+    font-family: 'iconfont';  /* Project id 4692956 */
+    src: url('//at.alicdn.com/t/c/font_4692956_lc5fjtas54.woff2?t=1727098445449') format('woff2'),
+         url('//at.alicdn.com/t/c/font_4692956_lc5fjtas54.woff?t=1727098445449') format('woff'),
+         url('//at.alicdn.com/t/c/font_4692956_lc5fjtas54.ttf?t=1727098445449') format('truetype');
+  }
+

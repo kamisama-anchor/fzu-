@@ -1,0 +1,9 @@
+
+<view class="container">
+    <image class="placeholder" src="http://cdnjson.com/images/2024/09/25/index5.jpg" mode="aspectFit"></image>
+    <view>教师端</view>
+    <view class="button-container">
+        <button class="button" bindtap="enterAttendance">进入点名</button>
+        <button class="button" bindtap="gotoindex2">返回菜单栏</button>
+    </view>
+</view>

@@ -1,0 +1,8 @@
+
+<view class="login-bg">
+ <view class="container"> 
+    <button class="action-button1" bindtap="startAttendance">发起签到</button> 
+    <button class="action-button2" bindtap="gotorank">查看排行榜</button> 
+    <button class="action-button3" bindtap="gotostu">学生名单相关</button>
+ </view>
+</view>

@@ -1,0 +1,5 @@
+<view class="container">
+  <button class="btn-top">评论 / 质疑</button>
+  <button class="btn-left">2</button>
+  <button class="btn-right">3</button>
+</view>

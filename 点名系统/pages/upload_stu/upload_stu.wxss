@@ -1,0 +1,28 @@
+.btn-container {
+    display: flex;
+    justify-content: space-between; /* 子元素分散对齐 */
+    align-items: center; /* 子元素垂直居中 */
+    width: 100%; /* 确保容器宽度为屏幕宽度 */
+    padding: 10px 0; /* 上下padding，确保按钮不会紧贴屏幕顶部 */
+  }
+.action-button1
+{
+    background-image: linear-gradient(to right, #3CA55C 0%, #B5AC49  51%, #3CA55C  100%);
+    padding: 20px;  
+}
+.action-button2
+{
+    background-image: linear-gradient(to right, #E55D87 0%, #5FC3E4  51%, #E55D87  100%);
+    padding: 20px; 
+}
+.btn-container
+{
+background-image: url('http://cdnjson.com/images/2024/09/25/v2-5ef7fc1a25366518a65e3066fd465300_r.jpg');
+height: 100vh;
+background-size: cover;
+background-position: center;
+}
+
+    
+                             
+                            

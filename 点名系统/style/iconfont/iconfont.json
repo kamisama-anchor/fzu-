@@ -1,0 +1,16 @@
+{
+  "id": "4692956",
+  "name": "no name",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "38645607",
+      "name": "长箭头-copy-copy",
+      "font_class": "arrdown-copy",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    }
+  ]
+}

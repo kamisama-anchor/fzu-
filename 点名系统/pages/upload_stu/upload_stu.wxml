@@ -1,0 +1,5 @@
+<!--pages/up_stu/up_stu.wxml-->
+<view class="btn-container">
+  <button bindtap="clickBtn" class="action-button1">上传学生名单</button>
+  <button bindtap="clickBtn2" class="action-button2">查看学生名单</button>
+</view>
