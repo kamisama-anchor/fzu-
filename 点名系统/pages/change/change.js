@@ -7,7 +7,7 @@ Page({
     randomRecord: null ,// 用来存储随机抽取的整个记录
     xuenum: 0,
     add:0,
-    question:''
+    status:''
     },
     // 生命周期函数--监听页面加载
     onLoad: function() {
@@ -53,6 +53,29 @@ Page({
           console.error('查询失败', err);
         }
       });
+      db.collection('user_ol').where({
+        num:this.data.xuenum
+      }).get({
+        success: res => {
+          // 查询成功
+          console.log(res)
+          if (res.data.length > 0) {
+            // 如果查询到数据
+            wx.showToast({
+              title: '学生在线',
+              icon: 'success',
+              duration: 2000
+            });
+          } else {
+            // 如果没有查询到数据
+            wx.showToast({
+              title: '学生缺勤',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        },
+      })
     },
     calculateWeights: function(records) {
     return records.map(record => {
@@ -92,11 +115,6 @@ Page({
     });
   },
 
-  inputQuestion: function(e) {
-    this.setData({
-      question: e.detail.value
-    });
-  },
 
    queryUser: function(){
     const xuenum = this.data.xuenum; // 从data对象中获取xuenum
@@ -115,64 +133,5 @@ Page({
     })  
   
   },
-  // questionUser: function() {
-  //     const temp = this.data.question;
-  //     const xuenum = this.data.xuenum;
-  //     const db = wx.cloud.database(); // 获取数据库的引用
-  //     const currentTime = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  //     db.collection('user_ol').where({
-  //       num: xuenum
-  //     }).get({
-  //       success: res => {
-  //         // 查询成功的处理逻辑
-  //         if (res.data.length > 0) {
-  //           // 假设只更新第一条记录
-  //           const record = res.data[0];
-  //           db.collection("user_ol").doc(record._id).update({
-  //             data: {
-  //               question: temp,
-  //               qtime:currentTime
-  //             },
-  //             success: updateRes => {
-  //               // 更新成功的处理逻辑
-  //               console.log('更新成功',temp);
-  //               wx.showToast({
-  //                 title: '提问成功',
-  //                 icon: 'success',
-  //                 duration: 2000
-  //               });
-  //             },
-  //             fail: updateErr => {
-  //               // 更新失败的处理逻辑
-  //               console.error('更新失败', updateErr);
-  //               wx.showToast({
-  //                 title: '更新失败',
-  //                 icon: 'none',
-  //                 duration: 2000
-  //               });
-  //             }
-  //           });
-  //         } else {
-  //           // 没有查询到记录的情况
-  //           console.log('没有查询到记录');
-  //           wx.showToast({
-  //             title: '这个学生没到',
-  //           });
-  //         }
-  //       },
-  //       fail: err => {
-  //         // 查询失败的处理逻辑
-  //         console.error('查询失败', err);
-  //         wx.showToast({
-  //           title: '查询失败',
-  //           icon: 'none',
-  //           duration: 2000
-  //         });
-  //       }
-  //     });
-  //     db.collection('').add({
-
-  //     })
-  //   },
 
 });
