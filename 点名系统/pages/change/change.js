@@ -7,7 +7,6 @@ Page({
     randomRecord: null ,// 用来存储随机抽取的整个记录
     xuenum: 0,
     add:0,
-    status:''
     },
     // 生命周期函数--监听页面加载
     onLoad: function() {
@@ -32,6 +31,7 @@ Page({
               },
               success: updateRes => {
                 console.log('记录更新成功，时间戳添加');
+                this.ifonlie();
               },
               fail: updateErr => {
                 console.error('记录更新失败', updateErr);
@@ -53,12 +53,15 @@ Page({
           console.error('查询失败', err);
         }
       });
+    },
+
+    ifonlie:function(){
       db.collection('user_ol').where({
         num:this.data.xuenum
       }).get({
         success: res => {
           // 查询成功
-          console.log(res)
+          this.addcount();
           if (res.data.length > 0) {
             // 如果查询到数据
             wx.showToast({
@@ -77,6 +80,59 @@ Page({
         },
       })
     },
+
+
+
+    addcount: function() {
+      const that = this; // 保存当前上下文
+      const db = wx.cloud.database(); // 获取数据库引用
+      const xuenum = this.data.xuenum; // 从data对象中获取xuenum
+    
+      // 查询 user_ol 集合中特定学号的记录
+      db.collection('user_ol').where({
+        num: xuenum
+      }).get({
+        success: function(res) {
+          // 查询成功，处理结果
+          if (res.data.length > 0) {
+            // 获取记录的 _id 和 count 属性
+            const recordId = res.data[0]._id;
+            const currentCount = res.data[0].count || 0;
+    
+            // 如果 count 是 0，则更新 users 集合中的 score 并增加 user_ol 集合中的 count
+            let scoreUpdatePromise;
+            if (currentCount === 0) {
+              // 更新 users 集合中的 score
+              scoreUpdatePromise = db.collection('users').where({
+                num: xuenum
+              }).update({
+                data: {
+                  score: that.data.randomRecord.score + 1 // 将 score 属性加1
+                }
+              });
+            } else {
+              scoreUpdatePromise = Promise.resolve(); // 如果不需要更新 score，使用空的 Promise
+            }
+    
+            scoreUpdatePromise.then(() => {
+              // 更新 user_ol 集合中的 count
+              return db.collection('user_ol').doc(recordId).update({
+                data: {
+                  count: currentCount + 1 // 将 count 属性加1
+                }
+              });
+            }).then(updateRes => {
+              // 更新成功
+              console.log('更新成功', updateRes);
+            }).catch(updateErr => {
+              // 更新失败
+              console.error('更新失败', updateErr);
+            });
+          }
+        }
+      });
+    },
+
     calculateWeights: function(records) {
     return records.map(record => {
         // 假设权重是分数的倒数，分数越高，权重越低
@@ -116,22 +172,214 @@ Page({
   },
 
 
-   queryUser: function(){
+  queryUser: function() {
+    const that = this; // 保存当前上下文
+    const db = wx.cloud.database(); // 获取数据库引用
     const xuenum = this.data.xuenum; // 从data对象中获取xuenum
     const add = this.data.add;
-    const temp = this.data.randomRecord.score + parseFloat(add);
-    db.collection('users').where({
-      num:xuenum
-    }).update({
-      data:{
-        score:temp,
-      }
-    }).then(res => {
-      console.log('更新成功')
-    }).catch(err => {
-      console.log('更新失败',err)
-    })  
   
+    // 查询特定学号的记录
+    db.collection('user_ol').where({
+      num: xuenum
+    }).get({
+      success: function(res) {
+        // 查询成功，处理结果
+        if (res.data.length > 0) {
+          // 获取记录的 count 属性，如果没有则默认为 0
+          const count = res.data[0].count || 0;
+          const temp = that.data.randomRecord.score;
+  
+          // 计算新的 score 值
+          const newScore = parseFloat(add) * (0.9+ 0.1* count ) + temp;
+          console.log('成绩',newScore);
+          // 更新记录的 score
+          db.collection('users').where({
+            num: xuenum
+          }).update({
+            data: {
+              score: newScore
+            },
+            success: function(updateRes) {
+              // 更新成功
+              console.log('更新成功', updateRes);
+              wx.showToast({
+                title: '分数更新成功',
+                icon: 'success',
+                duration: 2000
+              });
+            },
+            fail: function(updateErr) {
+              // 更新失败
+              console.error('更新失败', updateErr);
+              wx.showToast({
+                title: '更新失败，请重试',
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          });
+        } else {
+          // 如果没有查询到数据
+          wx.showToast({
+            title: '未找到对应的记录',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      },
+      fail: function(err) {
+        // 查询失败
+        console.error('查询失败', err);
+        wx.showToast({
+          title: '查询失败，请重试',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    });
   },
 
+  decreaseScore: function() {
+    const that = this;
+    const db = wx.cloud.database();
+    const xuenum = this.data.xuenum; // 从data对象中获取xuenum
+
+    if (xuenum === 0) {
+      wx.showToast({
+        title: '学号未设置',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+
+    // 查询 user_ol 集合中特定学号的记录
+    db.collection('users').where({
+      num: xuenum
+    }).get({
+      success: function(res) {
+        if (res.data.length > 0) {
+          const record = res.data[0];
+          if (record.score > 0) { // 确保 score 大于 0 才进行减操作
+            // 更新 users 集合中的 score
+            db.collection('users').doc(record._id).update({
+              data: {
+                score: db.command.inc(-1) // 将 score 属性减1
+              },
+              success: function(updateRes) {
+                // 更新成功
+                console.log('分数减少成功', updateRes);
+                wx.showToast({
+                  title: '分数减少1',
+                  icon: 'success',
+                  duration: 2000
+                });
+              },
+              fail: function(updateErr) {
+                // 更新失败
+                console.error('分数减少失败', updateErr);
+                wx.showToast({
+                  title: '分数减少失败，请重试',
+                  icon: 'none',
+                  duration: 2000
+                });
+              }
+            });
+          } else {
+            wx.showToast({
+              title: '分数不能为负',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        } else {
+          wx.showToast({
+            title: '未找到对应的记录',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      },
+      fail: function(err) {
+        console.error('查询失败', err);
+        wx.showToast({
+          title: '查询失败，请重试',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    });
+  },
+
+  addScore: function() {
+    const that = this;
+    const db = wx.cloud.database();
+    const xuenum = this.data.xuenum; // 从data对象中获取xuenum
+
+    if (xuenum === 0) {
+      wx.showToast({
+        title: '学号未设置',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+
+    // 查询 user_ol 集合中特定学号的记录
+    db.collection('users').where({
+      num: xuenum
+    }).get({
+      success: function(res) {
+        if (res.data.length > 0) {
+          const record = res.data[0];
+          if (record.score > 0) { // 确保 score 大于 0 才进行减操作
+            // 更新 users 集合中的 score
+            db.collection('users').doc(record._id).update({
+              data: {
+                score: db.command.inc(0.5) // 将 score 属性减1
+              },
+              success: function(updateRes) {
+                // 更新成功
+                console.log('分数减少成功', updateRes);
+                wx.showToast({
+                  title: '分数增加0.5',
+                  icon: 'success',
+                  duration: 2000
+                });
+              },
+              fail: function(updateErr) {
+                // 更新失败
+                console.error('分数减少失败', updateErr);
+                wx.showToast({
+                  title: '分数减少失败，请重试',
+                  icon: 'none',
+                  duration: 2000
+                });
+              }
+            });
+          } else {
+            wx.showToast({
+              title: '分数不能为负',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        } else {
+          wx.showToast({
+            title: '未找到对应的记录',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      },
+      fail: function(err) {
+        console.error('查询失败', err);
+        wx.showToast({
+          title: '查询失败，请重试',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    });
+  }
 });
