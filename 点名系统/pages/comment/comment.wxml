@@ -1,6 +1,7 @@
 <view class="all">
     <button bind:tap="clickBtn" style="height: 50px;width:100px;"class="container">刷新</button>
     <view class="comment_text">
+            <text class="text-ti">K班评论</text>
             <scroll-view scroll-y="true" class="comment-list">
             <view class="comment-item" wx:for="{{comments}}" wx:key="unique">
             <text>姓名：{{item.name}}</text>
