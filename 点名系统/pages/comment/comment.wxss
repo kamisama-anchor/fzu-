@@ -30,7 +30,7 @@
       background-color: #ffffff;  
       border-radius: 20rpx;  
       position: relative;  
-      margin-top: 1000rpx;  
+      margin-top: 900rpx;  
       box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.15);  
       z-index: 9;  
     }  
@@ -65,3 +65,27 @@
       left: 40rpx;  
       top: 28rpx;  
     }
+.comment_text {
+        display: flex;
+        height: 100px;
+        width: 280px;
+        border: 3rpx ;
+        border-radius: 10rpx;
+      }
+.text-ti {
+        position: absolute;
+        font-size: 12px;
+        background: white;
+        margin: -10px 0 0 10px;
+        padding: 0px 5px;
+        color: rgb(144, 147, 167);
+      }
+.comment-item text {
+      position: relative;
+      margin-right: 20rpx;
+      text-align: auto;
+      top: 20px;
+      left: 10px;
+      font-size: 25rpx;
+      font-weight: bold;
+}
