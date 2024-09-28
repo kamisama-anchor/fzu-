@@ -21,10 +21,6 @@
   left: 20px;
   font-size: 35rpx;
   font-weight: bold;
-  background: linear-gradient(to right, #d71ae8, #4a8aff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 
 }
 
@@ -67,3 +63,4 @@
     opacity: 1;
     transition: 0s;
 }
+
