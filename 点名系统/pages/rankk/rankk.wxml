@@ -1,25 +1,27 @@
 
 <view class="container">
-<button bindtap="clickBtn" class="action-button">点击刷新排行榜</button>
-  <view wx:for="{{records}}" wx:key="item" class="rank_block">
-    <view class="rank-item">
-      <!--头像-->
-      <view class="rank-img">
-        <image src= 'https://tse3-mm.cn.bing.net/th/id/OIP-C.yMAeC3o1ZnVZYsQecLSlEAAAAA?rs=1&pid=ImgDetMain'></image>
+  <button bindtap="clickBtn" class="action-button">点击刷新排行榜</button>
+  <scroll-view scroll-y="true" class="scroll-view" style="height: 100%;">
+    <view wx:for="{{records}}" wx:key="item" class="rank_block">
+      <view class="rank-item">
+        <!--头像-->
+        <view class="rank-img">
+          <image src='https://tse3-mm.cn.bing.net/th/id/OIP-C.yMAeC3o1ZnVZYsQecLSlEAAAAA?rs=1&pid=ImgDetMain'></image> 
+        </view>
+        <!--展示昵称,以及贡献值-->
+        <block>
+          <view class="rank-name">{{item.name}}</view>
+          <view class="rank-name">{{item.num}}</view>
+          <text wx:if="{{self == item.num}}">-----------------这是您---------------</text>
+          <view class="rank-price">积分：{{item.score}}分</view>
+        </block>
+        <!--排名-->
+        <view class="rank-uv">
+          <text wx:if="{{index >= 3}}">第 {{index + 1}} 名</text>
+          <image src="/images/rank{{index + 1}}.png" wx:if="{{index < 3}}" />
+        </view>
       </view>
-      <!--展示昵称,以及贡献值-->
-      <block>
-        <view class="rank-name">{{item.name}}</view>
-        <view class="rank-name">{{item.num}}</view>
-         <text wx:if="{{self == item.num}}">-----------------这是您---------------</text>
-        <view class="rank-price">积分：{{item.score}}分</view>
-      </block>
-      <!--排名-->
-      <view class="rank-uv">
-  <text wx:if="{{index >= 3}}">第 {{index + 1}} 名</text>
-  <image src="/images/rank{{index + 1}}.png" wx:if="{{index < 3}}" />
-</view>
     </view>
-  </view>
-</view>
 
+  </scroll-view>
+</view>
