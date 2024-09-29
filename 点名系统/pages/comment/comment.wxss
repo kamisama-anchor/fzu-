@@ -30,7 +30,7 @@
       background-color: #ffffff;  
       border-radius: 20rpx;  
       position: relative;  
-      margin-top: 900rpx;  
+      margin-top: 500rpx;  
       box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.15);  
       z-index: 9;  
     }  
@@ -67,10 +67,11 @@
     }
 .comment_text {
         display: flex;
-        height: 100px;
+        height: 150px;
         width: 280px;
         border: 3rpx ;
         border-radius: 10rpx;
+        margin-top: 200rpx;
       }
 .text-ti {
         position: absolute;
