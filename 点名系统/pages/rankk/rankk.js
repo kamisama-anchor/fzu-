@@ -8,20 +8,21 @@ Page({
     records: [],
     xuenum: '',
     add:'',
-    randomRecord: null
+    randomRecord: null,
+    self: app.globalData.mynum
   },
 
   onLoad: function () {
     this.clickBtn();
     
-},
+}，
 onShow: function () {
     this.clickBtn();
-},
+}，
 onPullDownRefresh: function () { //下拉刷新
     wx.stopPullDownRefresh();
     this.clickBtn();
-},
+}，
   clickBtn(){
     const that = this;
   db.collection('users').get({
@@ -36,12 +37,12 @@ onPullDownRefresh: function () { //下拉刷新
       });
     }
   })
-},
+}，
 inputChange: function(e) {
   this.setData({
     add: e.detail.value
   });
-},
+}，
 
 queryUser: function(){
   const xuenum = this.data.xuenum; // 从data对象中获取xuenum
@@ -60,5 +61,5 @@ queryUser: function(){
     console.log('更新失败',err)
   })  
 
-},
+}，
 });
