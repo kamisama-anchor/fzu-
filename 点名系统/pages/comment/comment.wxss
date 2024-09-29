@@ -30,7 +30,7 @@
       background-color: #ffffff;  
       border-radius: 20rpx;  
       position: relative;  
-      margin-top: 500rpx;  
+      margin-top: 300rpx;  
       box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.15);  
       z-index: 9;  
     }  
@@ -67,7 +67,7 @@
     }
 .comment_text {
         display: flex;
-        height: 150px;
+        height: 280px;
         width: 280px;
         border: 3rpx ;
         border-radius: 10rpx;
@@ -89,4 +89,6 @@
       left: 10px;
       font-size: 25rpx;
       font-weight: bold;
+      border-bottom: 1px dotted rgb(255, 0, 98);
+      display: inline-block;
 }
