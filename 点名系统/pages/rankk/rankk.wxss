@@ -1,73 +1,130 @@
 .container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 .rank-item {
-  height: 300rpx;
+height: 300rpx;
 width: 750rpx;
 background: #fff;
 padding: 20rpx 20rpx 20rpx 50rpx;
 box-sizing: border-box;
 position: relative;
-  
+
 }
 
 .rank-item .rank-img {
-  width: 100rpx;
-  height: 100rpx;
-  float: left;
-  margin-right: 50rpx;
-  position: relative;
+width: 100rpx;
+height: 100rpx;
+float: left;
+margin-right: 50rpx;
+position: relative;
 }
 
 .rank-item .rank-img image {
-  position: absolute;
-  border-radius: 50%;
-  width: 100rpx;
-  height: 100rpx;
-  top: 0;
-  left: 0;
+position: absolute;
+border-radius: 50%;
+width: 100rpx;
+height: 100rpx;
+top: 0;
+left: 0;
 }
 
 .rank-item .rank-name {
-  font-size: 32rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  color: #4e5b65;
-  font-weight: bold;
+font-size: 32rpx;
+height: 50rpx;
+line-height: 50rpx;
+color: #4e5b65;
+font-weight: bold;
 }
 
 .rank-item .rank-price {
-  height: 40rpx;
-  line-height: 40rpx;
-  margin-top: 10rpx;
-  font-size: 24rpx;
-  color: #d55a4a;
+height: 40rpx;
+line-height: 40rpx;
+margin-top: 10rpx;
+font-size: 24rpx;
+color: #d55a4a;
 }
 
 .rank-item .rank-uv text {
-  font-size: 38rpx;
-  position: absolute;
-  height: 100rpx;
-  line-height: 100rpx;
-  bottom: 20rpx;
-  right: 20rpx;
-  color: #777;
+font-size: 38rpx;
+position: absolute;
+height: 100rpx;
+line-height: 100rpx;
+bottom: 20rpx;
+right: 20rpx;
+color: #777;
 }
 .rank-item .rank-uv image {
-  position: absolute;
-  width: 100rpx;
-  height: 100rpx;
-  bottom: 120rpx;
-  right: 20rpx;
+position: absolute;
+width: 100rpx;
+height: 100rpx;
+bottom: 120rpx;
+right: 20rpx;
 }
 .action-button {
-  position: relative;
-  width: 80%; /* 按钮宽度 */
-  padding: 10rpx; /* 按钮内边距 */
-  background-color: #C84B31;/* 按钮背景颜色 */
-  color: white; /* 按钮文字颜色 */
-  border-radius: 5rpx; /* 按钮边框圆角 */
+position: relative;
+width: 80%; /* 按钮宽度 */
+padding: 10rpx; /* 按钮内边距 */
+background-color: #C84B31;/* 按钮背景颜色 */
+color: white; /* 按钮文字颜色 */
+border-radius: 5rpx; /* 按钮边框圆角 */
+}
+
+.rank_block {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 使子元素在交叉轴上居中 */
+  padding: 10px 0; /* 上下内边距 */
+  border-bottom: 1px solid #f0f0f0; /* 每个排行榜项的下边框，最后一个可以去掉 */
+}
+
+.rank_item {
+  width: 100%; /* 占满父容器的宽度 */
+  display: flex;
+  align-items: center; /* 使子元素在交叉轴上居中 */
+  margin-bottom: 10px; /* 每个排行榜项的下边距 */
+}
+
+.rank-img {
+  width: 50px; /* 头像宽度 */
+  height: 50px; /* 头像高度 */
+  border-radius: 50%; /* 圆形头像 */
+  overflow: hidden; /* 隐藏超出容器的部分 */
+  margin-right: 10px; /* 与文本的间距 */
+}
+
+.rank-img image {
+  width: 100%; /* 占满父容器的宽度 */
+  height: 100%; /* 占满父容器的高度 */
+  object-fit: cover; /* 裁剪并填充整个元素 */
+}
+
+.rank-name {
+  flex-grow: 1; /* 占据剩余空间 */
+  font-size: 16px; /* 字体大小 */
+  color: #333; /* 字体颜色 */
+}
+
+.rank-price {
+  font-size: 14px; /* 字体大小 */
+  color: #666; /* 字体颜色 */
+}
+
+.rank-uv {
+  display: flex;
+  align-items: center;
+  margin-top: 5px; /* 与上面元素的间距 */
+}
+
+.scroll-view {
+  height: 300px; /* 这里的高度可以根据你的页面布局进行调整 */
+  overflow-y: scroll; /* 允许垂直方向滚动 */
+  -webkit-overflow-scrolling: touch; /* 在iOS上启用原生滚动 */
+  margin-top: 10px; /* 根据需要添加上边距 */
+  padding: 10px; /* 内边距 */
+  border: 1px solid #ccc; /* 边框，可以根据需要调整 */
+  border-radius: 4px; /* 圆角边框 */
+  background-color: #fff; /* 背景颜色 */
 }
