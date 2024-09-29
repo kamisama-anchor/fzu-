@@ -1,6 +1,6 @@
-<button bindtap="clickBtn" class="action-button">点击刷新排行榜</button>
 
 <view class="container">
+<button bindtap="clickBtn" class="action-button">点击刷新排行榜</button>
   <view wx:for="{{records}}" wx:key="item" class="rank_block">
     <view class="rank-item">
       <!--头像-->
