@@ -15,46 +15,103 @@ Page({
     getRandomRecord: function() {
       const db = wx.cloud.database();
       const _ = db.command;
+      let records = []; // 存储所有获取到的记录
+      const pageSize = 20; // 每页的记录数
+      let pageOffset = 0; // 当前页的偏移量
+      const maxRecords = 1000; // 最大获取记录数
     
-      db.collection('users').limit(1000).get({
-        success: res => {
-          if (res.data.length > 0) {
-            // 计算权重并选择记录
-            const weightedRecords = this.calculateWeights(res.data);
-            const randomRecord = this.selectRecordByWeight(weightedRecords);
-            const xuenum = randomRecord.num;
-    
-            // 更新数据库中的记录，并添加当前服务器时间戳
-            db.collection('users').doc(randomRecord._id).update({
-              data: {
-                timestamp: _.set(db.serverDate()) // 设置当前服务器时间
-              },
-              success: updateRes => {
-                console.log('记录更新成功，时间戳添加');
-                this.ifonlie();
-              },
-              fail: updateErr => {
-                console.error('记录更新失败', updateErr);
+      // 分页获取记录的函数
+      const fetchPageOfRecords = (offset, size) => {
+        db.collection('users')
+          .skip(offset)
+          .limit(size)
+          .get({
+            success: res => {
+              if (res.data.length > 0) {
+                records = records.concat(res.data); // 将新获取的记录添加到records数组中
+                if (records.length < maxRecords) {
+                  pageOffset += pageSize; // 更新偏移量，准备获取下一页
+                  fetchPageOfRecords(pageOffset, pageSize); // 递归调用以获取下一页的记录
+                } else {
+                  // 当获取到足够的记录后，处理records数组
+                  processRecords();
+                }
+              } else {
+                console.log('没有更多的记录');
+                processRecords(); // 如果没有更多的记录，处理已有的records数组
               }
-            });
+            },
+            fail: err => {
+              console.error('查询失败', err);
+            }
+          });
+      };
     
-            // 更新页面data对象中的randomRecord变量
-            this.setData({
-              randomRecord: randomRecord,
-              xuenum: xuenum
-            });
-    
-            console.log('随机记录：', randomRecord);
-          } else {
-            console.log('没有找到记录');
-          }
-        },
-        fail: err => {
-          console.error('查询失败', err);
+      // 处理记录的函数
+      const processRecords = () => {
+        if (records.length === 0) {
+          console.log('没有找到记录');
+          return;
         }
+        // 计算权重并选择记录
+        const weightedRecords = this.calculateWeights(records);
+        const randomRecord = this.selectRecordByWeight(weightedRecords);
+        const xuenum = randomRecord.num;
+    
+        // 更新数据库中的记录，并添加当前服务器时间戳
+        db.collection('users').doc(randomRecord._id).update({
+          data: {
+            timestamp: _.set(db.serverDate()) // 设置当前服务器时间
+          },
+          success: updateRes => {
+            console.log('记录更新成功，时间戳添加');
+            this.ifonlie();
+          },
+          fail: updateErr => {
+            console.error('记录更新失败', updateErr);
+          }
+        });
+    
+        // 更新页面data对象中的randomRecord变量
+        this.setData({
+          randomRecord: randomRecord,
+          xuenum: xuenum
+        });
+    
+        console.log('随机记录：', randomRecord);
+      };
+    
+      // 开始分页查询
+      fetchPageOfRecords(pageOffset, pageSize);
+    },
+    
+    calculateWeights: function(records) {
+      return records.map(record => {
+        // 假设权重是分数的倒数，分数越高，权重越低
+        const weight = 1 / (record.score || 1); // 防止除以0
+        return { record, weight };
       });
     },
-
+    
+    selectRecordByWeight: function(weightedRecords) {
+      let cumulativeWeight = 0;
+      weightedRecords.forEach(item => {
+        cumulativeWeight += item.weight;
+      });
+    
+      if (cumulativeWeight === 0) return null; // 防止除以0
+    
+      const randomValue = Math.random() * cumulativeWeight;
+      let currentWeight = 0;
+      for (let i = 0; i < weightedRecords.length; i++) {
+        currentWeight += weightedRecords[i].weight;
+        if (currentWeight >= randomValue) {
+          return weightedRecords[i].record;
+        }
+      }
+      return null; // 默认返回null，理论上不应该执行到这里
+    },
+    
     ifonlie:function(){
       db.collection('user_ol').where({
         num:this.data.xuenum
@@ -133,31 +190,6 @@ Page({
       });
     },
 
-    calculateWeights: function(records) {
-    return records.map(record => {
-        // 假设权重是分数的倒数，分数越高，权重越低
-        const weight = 1 / (record.score || 1); // 防止除以0
-        return { record, weight };
-    });
-    },
-    selectRecordByWeight: function(weightedRecords) {
-    let cumulativeWeight = 0;
-    weightedRecords.forEach(item => {
-        cumulativeWeight += item.weight;
-    });
-    
-    if (cumulativeWeight === 0) return null; // 防止除以0
-    
-    const randomValue = Math.random() * cumulativeWeight;
-    let currentWeight = 0;
-    for (let i = 0; i < weightedRecords.length; i++) {
-        currentWeight += weightedRecords[i].weight;
-        if (currentWeight >= randomValue) {
-        return weightedRecords[i].record;
-        }
-    }
-    return null; // 默认返回null，理论上不应该执行到这里
-    },
    gotoindex5()
    {
     wx.navigateTo({
