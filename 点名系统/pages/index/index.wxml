@@ -1,7 +1,7 @@
 <!--pages/login/login.wxml-->
 <view class="login-bg"> 
     <image class="img-a" src="https://zhoukaiwen.com/img/loginImg/bg1.png"></image>
-    <image class="logo" src="https://tse3-mm.cn.bing.net/th/id/OIP-C.w4IMQ9WjQYp3dPG-jciZ0QHaHa?w=178&h=180&c=7&r=0&o=5&dpr=2&pid=1.7"></image> 
+     <image class="logo" src="http://cdnjson.com/images/2024/10/08/35521ea90f9dd7b5eb70563751db3f09.jpg"></image> 
     <view class="t-login">
         <view class="t-b">登 录</view>
         <form class="cl">
