@@ -23,9 +23,9 @@ Page({
       // 分页获取记录的函数
       const fetchPageOfRecords = (offset, size) => {
         db.collection('users')
-          .skip(offset)
-          .limit(size)
-          .get({
+          。skip(offset)
+          。limit(size)
+          。get({
             success: res => {
               if (res.data.length > 0) {
                 records = records.concat(res.data); // 将新获取的记录添加到records数组中
@@ -158,7 +158,7 @@ Page({
     
             // 如果 count 是 0，则更新 users 集合中的 score 并增加 user_ol 集合中的 count
             let scoreUpdatePromise;
-            if (currentCount === 0) {
+            if (currentCount >= 0) {
               // 更新 users 集合中的 score
               scoreUpdatePromise = db.collection('users').where({
                 num: xuenum
