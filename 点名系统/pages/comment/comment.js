@@ -71,7 +71,7 @@ Page({
     let that = this;
     let pageSize = 20; // 每页数据量
     let page = 0; // 当前页码
-    let allComments = this.data.comments; // 存储所有评论
+    let allComments = []; // 存储所有评论
 
     function getData() {
       db.collection('comments').orderBy('createTime', 'desc').skip(page * pageSize).limit(pageSize).get({
